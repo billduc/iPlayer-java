@@ -40,11 +40,8 @@ public class IPlayer extends Application {
             // handle exception
         }
         
-        
-        
-        
-       //new App_Music().setVisible(true);
-       new Player_Music().setVisible(true);
+       new App_Music().setVisible(true);
+       //new Player_Music().setVisible(true);
     }
 
     @Override
