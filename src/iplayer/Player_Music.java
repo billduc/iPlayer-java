@@ -19,6 +19,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -35,7 +36,8 @@ public class Player_Music extends javax.swing.JFrame {
     /**
      * Creates new form Player_Music
      */
-    
+    private boolean ok_shuffle = false;
+    private boolean ok_repeat = false;
     private boolean check_onl = false;
     private boolean has_start = false;
     private boolean playing = false;
@@ -82,6 +84,7 @@ public class Player_Music extends javax.swing.JFrame {
         }
 
         initComponents();
+        this.setIconImage(new ImageIcon(getClass().getResource("/img/play.png")).getImage());
     }
 
     /**
@@ -280,6 +283,11 @@ public class Player_Music extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -465,12 +473,22 @@ public class Player_Music extends javax.swing.JFrame {
         btnmix.setBorder(null);
         btnmix.setBorderPainted(false);
         btnmix.setContentAreaFilled(false);
+        btnmix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmixActionPerformed(evt);
+            }
+        });
 
         btnrepeat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/repeat.png"))); // NOI18N
         btnrepeat.setToolTipText("lặp lại");
         btnrepeat.setBorder(null);
         btnrepeat.setBorderPainted(false);
         btnrepeat.setContentAreaFilled(false);
+        btnrepeat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrepeatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -992,6 +1010,50 @@ public class Player_Music extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btndownActionPerformed
+
+    private void btnmixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmixActionPerformed
+        // TODO add your handling code here:
+        if (!ok_shuffle){
+            ok_shuffle = true;
+            btnmix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/shuffle (1).png")));
+        } else{
+            ok_shuffle = false;
+            btnmix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/shuffle.png")));
+        }
+    }//GEN-LAST:event_btnmixActionPerformed
+
+    private void btnrepeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrepeatActionPerformed
+        // TODO add your handling code here:
+        if (!ok_repeat){
+            ok_repeat = true;
+            btnrepeat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/repeat (1).png")));
+        } else{
+            ok_repeat = false;
+            btnrepeat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/repeat.png")));
+        }
+    }//GEN-LAST:event_btnrepeatActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try 
+        { 
+            String path =  ".\\src\\iplayer\\Iplayer_tv.chm"; 
+            //System.out.println(path);
+            File file = new File(path); 
+             
+            if(file.exists()) 
+            { 
+                Runtime.getRuntime().exec("hh.exe " + path); 
+            } 
+            else 
+            { 
+                throw new Exception("File \"Iplayer_tv.chm\" not found!"); 
+            } 
+        } 
+        catch(Exception ex) 
+        { 
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Notice", JOptionPane.OK_OPTION); 
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void search_onl() {
 
